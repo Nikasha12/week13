@@ -1,22 +1,16 @@
-#Setup Mysql
-mysql -u root -p
+#Setup Oracle SQL in SQL Developer
 
-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+sql.Open("goracle", "SYS AS SYSDBA/oracle@localhost:1521/ORCLPDB")
 
-GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost' WITH GRANT OPTION;
-
-
-#create database
-CREATE DATABASE goAPI;
-USE DATABASE goAPI;
 
 #create table
-CREATE TABLE time_table (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    time DATETIME NOT NULL
+CREATE TABLE time_log (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    timestamp TIMESTAMP
 );
 
 
-# install mysql driver
 
-go get -u github.com/go-sql-driver/mysql
+# install oracle driver
+
+go get -u gopkg.in/goracle.v2
